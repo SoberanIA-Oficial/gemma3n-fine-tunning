@@ -1,0 +1,15 @@
+services:
+  myapp:
+    build: .
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+    deploy:
+      resources:
+          reservations:
+              devices:
+                  - driver: nvidia
+                    device_ids: ['0', '1', '2', '3']
+                    capabilities: [ gpu ]
