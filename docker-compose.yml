@@ -6,6 +6,7 @@ services:
     stdin_open: true
     tty: true
     command: /bin/bash
+    shm_size: '2gb'  # Increase from 1gb to 2gb or whatever size you need
     deploy:
       resources:
           reservations:

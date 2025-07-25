@@ -1,0 +1,25 @@
+FROM nvidia/cuda:12.4.0-devel-ubuntu22.04
+
+# (opcional) Instale o Python e pip caso não venha já na imagem
+RUN apt-get update && apt-get install -y python3 python3-pip
+
+ENV PYTHONUNBUFFERED=1
+WORKDIR /app
+
+# Instale dependências do sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    git
+
+COPY ./requirements.txt /app/
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
+
+# Instale transformers, timm, xformers, torch, deepspeed, unsloth, etc.
+RUN pip3 install --no-deps git+https://github.com/huggingface/transformers.git
+RUN pip3 install --no-deps --upgrade timm xformers==0.0.29.post3
+RUN pip3 install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+RUN pip3 install --no-deps deepspeed
+# Adicione unsloth e unsloth_zoo se for usar
+
+COPY . /app/
