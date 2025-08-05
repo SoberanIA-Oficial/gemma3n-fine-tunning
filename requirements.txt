@@ -1,2 +1,4 @@
 unsloth
 ipykernel
+jupyter 
+ipywidgets

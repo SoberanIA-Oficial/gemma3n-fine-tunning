@@ -207,3 +207,8 @@ unsloth_compiled_cache/
 unsloth_training_checkpoints/
 
 gemma_train_test_split/
+
+models/
+
+data/
+llama.cpp/
