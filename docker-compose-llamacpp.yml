@@ -9,7 +9,7 @@ services:
     volumes:
       - ./models:/models
     command: >
-      -m /models/enem-gemma-TESTE.Q8_0.gguf
+      -m /models/enem-gemma-3n-E2B-lora-8-v1-merged.Q8_0.gguf
       --port 8001
       --host 0.0.0.0
       -n 512
